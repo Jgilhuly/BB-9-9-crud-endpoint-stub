@@ -2,7 +2,7 @@
 from typing import List, Optional
 from datetime import datetime
 
-from models import Product, ProductCreate, ProductUpdate
+from models import Product, ProductCreate, ProductUpdate, User, UserCreate, UserUpdate
 
 
 class InMemoryDatabase:
@@ -10,7 +10,9 @@ class InMemoryDatabase:
 
     def __init__(self):
         self.products: List[Product] = []
+        self.users: List[User] = []
         self.next_id = 1
+        self.next_user_id = 1
         self._init_sample_data()
 
     def _init_sample_data(self):
@@ -41,6 +43,28 @@ class InMemoryDatabase:
 
         for product_data in sample_products:
             self.create_product(product_data)
+
+        # Initialize sample user data
+        sample_users = [
+            UserCreate(
+                name="John Doe",
+                email="john.doe@example.com",
+                password="password123"
+            ),
+            UserCreate(
+                name="Jane Smith",
+                email="jane.smith@example.com",
+                password="password456"
+            ),
+            UserCreate(
+                name="Bob Johnson",
+                email="bob.johnson@example.com",
+                password="password789"
+            )
+        ]
+
+        for user_data in sample_users:
+            self.create_user(user_data)
 
     def create_product(self, product_data: ProductCreate) -> Product:
         """Create a new product in the database."""
@@ -81,6 +105,47 @@ class InMemoryDatabase:
         for i, product in enumerate(self.products):
             if product.id == product_id:
                 del self.products[i]
+                return True
+        return False
+
+    def create_user(self, user_data: UserCreate) -> User:
+        """Create a new user in the database."""
+        user = User(
+            id=self.next_user_id,
+            **user_data.dict()
+        )
+        self.users.append(user)
+        self.next_user_id += 1
+        return user
+
+    def get_all_users(self) -> List[User]:
+        """Get all users from the database."""
+        return self.users
+
+    def get_user(self, user_id: int) -> Optional[User]:
+        """Get a specific user by ID."""
+        for user in self.users:
+            if user.id == user_id:
+                return user
+        return None
+
+    def update_user(self, user_id: int, update_data: UserUpdate) -> Optional[User]:
+        """Update an existing user in the database."""
+        user = self.get_user(user_id)
+        if not user:
+            return None
+
+        update_dict = update_data.dict(exclude_unset=True)
+        for field, value in update_dict.items():
+            setattr(user, field, value)
+
+        return user
+
+    def delete_user(self, user_id: int) -> bool:
+        """Delete a user from the database."""
+        for i, user in enumerate(self.users):
+            if user.id == user_id:
+                del self.users[i]
                 return True
         return False
 
