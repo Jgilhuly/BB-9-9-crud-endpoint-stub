@@ -30,8 +30,9 @@
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: #1d4ed8;
-  border-color: #1d4ed8;
+  background-color: var(--primary);
+  border-color: var(--primary);
+  filter: brightness(0.9);
 }
 
 .btn-secondary {
@@ -51,8 +52,9 @@
 }
 
 .btn-success:hover:not(:disabled) {
-  background-color: #047857;
-  border-color: #047857;
+  background-color: var(--success);
+  border-color: var(--success);
+  filter: brightness(0.9);
 }
 
 .btn-danger {
@@ -62,8 +64,9 @@
 }
 
 .btn-danger:hover:not(:disabled) {
-  background-color: #b91c1c;
-  border-color: #b91c1c;
+  background-color: var(--error);
+  border-color: var(--error);
+  filter: brightness(0.9);
 }
 
 .btn-warning {
@@ -73,8 +76,9 @@
 }
 
 .btn-warning:hover:not(:disabled) {
-  background-color: #c2410c;
-  border-color: #c2410c;
+  background-color: var(--warning);
+  border-color: var(--warning);
+  filter: brightness(0.9);
 }
 
 .btn-sm {
@@ -260,8 +264,8 @@
 }
 
 .error {
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
+  background-color: var(--error-bg);
+  border: 1px solid var(--error-border);
   color: var(--error);
   padding: var(--spacing-2);
   border-radius: var(--radius-sm);
@@ -409,13 +413,52 @@
 
 /* Enhanced Error State */
 .error {
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
+  background-color: var(--error-bg);
+  border: 1px solid var(--error-border);
   color: var(--error);
   padding: var(--spacing-3);
   border-radius: var(--radius-sm);
   margin-bottom: var(--spacing-3);
   font-weight: 500;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.theme-toggle:hover {
+  background: var(--gray-100);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.theme-toggle:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
+}
+
+.theme-toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.theme-toggle:hover .theme-toggle-icon {
+  transform: scale(1.1);
 }
 
 /* Responsive adjustments */

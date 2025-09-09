@@ -6,12 +6,14 @@
 }
 
 :root {
-  /* Color Palette */
+  /* Color Palette - Light Mode */
   --primary: #2563eb;
   --secondary: #64748b;
   --success: #059669;
   --warning: #d97706;
   --error: #dc2626;
+  --error-bg: #fef2f2;
+  --error-border: #fecaca;
   --background: #f8fafc;
   --text: #1e293b;
   --border: #e2e8f0;
@@ -24,7 +26,32 @@
   --gray-600: #475569;
   --gray-700: #334155;
   --gray-900: #0f172a;
+}
 
+/* Dark Mode Variables */
+.dark {
+  --primary: #3b82f6;
+  --secondary: #64748b;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --error-bg: #1f1a1a;
+  --error-border: #3f2e2e;
+  --background: #0f172a;
+  --text: #f1f5f9;
+  --border: #334155;
+  --white: #1e293b;
+  --gray-100: #334155;
+  --gray-200: #475569;
+  --gray-300: #64748b;
+  --gray-400: #94a3b8;
+  --gray-500: #cbd5e1;
+  --gray-600: #e2e8f0;
+  --gray-700: #f1f5f9;
+  --gray-900: #f8fafc;
+}
+
+:root {
   /* Typography */
   --font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   --font-size-sm: 14px;
